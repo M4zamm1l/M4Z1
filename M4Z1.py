@@ -671,4 +671,4 @@ def rcrack1(uid,pwx,tl):
     except:
         pass
     
-Main()
+fia()
