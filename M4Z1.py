@@ -196,7 +196,7 @@ def fia():
 			print(logo)
 			print('\033[1;32m>>> Legend :\x1b[1;97m  ')
 			linex()
-			print('[1] File Clone\n[2] Random Cloning\n[3] Gmail Cloning\n[0] Exit')
+			print('[1] File Clone\n[2] Pakistan Random Cloning\n[3] Bangladesh Cloning\n[4] Gmail Cloning\n[0] Exit')
 			linex()
 			xd=input('[*] Choose an option: ')
 			if xd in ['1','01']:
