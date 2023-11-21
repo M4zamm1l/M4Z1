@@ -568,9 +568,8 @@ def fcrack(uid,pwx,tl):
 		loop+=1
 	except:
 		pass
-
-fia()
-
+    fia()
+#___________
 def gml():
     user=[]
     os.system('clear')
@@ -671,4 +670,5 @@ def rcrack1(uid,pwx,tl):
         sys.stdout.flush()
     except:
         pass
+    
 Main()
